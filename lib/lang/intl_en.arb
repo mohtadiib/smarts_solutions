@@ -1,0 +1,74 @@
+{
+  "@@locale" :   "en" ,
+  "@@last_modified": "2018-05-20T17:16:46.997414",
+  "username": "Username",
+  "@username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "not_valid_username": "Not Valid Username",
+  "@not_valid_username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "password",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password_is_too_short": "password is too short",
+  "@password_is_too_short": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "Login",
+  "@login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "language": "عربي",
+  "@language": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "links": "Links",
+  "@links": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Contacts",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "attendance": "Attendance",
+  "@attendance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "support": "Support",
+  "@support": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profile": "Profile",
+  "@profile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Skip": "Skip",
+  "@profile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcome1_title": "Smart House",
+  "@profile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcome1_subtitle": "It is the house that can be controlled on your devices that control it at home,on the wall, on the iPad, or on your smartphone, where you can control and monitor all electrical and electronic devices.",
+  "@profile": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

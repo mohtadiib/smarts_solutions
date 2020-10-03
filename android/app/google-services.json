@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "916111794323",
+    "firebase_url": "https://smart-solutions-bbe5a.firebaseio.com",
+    "project_id": "smart-solutions-bbe5a",
+    "storage_bucket": "smart-solutions-bbe5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916111794323:android:5a9c18e143dc71d9b42d66",
+        "android_client_info": {
+          "package_name": "com.smart_solutions"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916111794323-hbqota89f9pogdacvvdi5dhs8ipprtbo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smart_solutions",
+            "certificate_hash": "7f6eb4415323aad2911680bee795026a0a1c8bb2"
+          }
+        },
+        {
+          "client_id": "916111794323-a1p0vn45ddbe6hljr87o9p5a2kk6qsr5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnHgWa0r4RUVIofPBLLiYVJrIv6hyhyyM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916111794323-a1p0vn45ddbe6hljr87o9p5a2kk6qsr5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

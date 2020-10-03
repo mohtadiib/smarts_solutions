@@ -1,0 +1,291 @@
+import '../modle/cart.dart';
+import 'package:provider/provider.dart';
+
+import '../modle/oder_items.dart';
+
+import '../modle/iteme_order_items.dart';
+import '../modle/order_items_header.dart';
+import '../translation_strings.dart';
+import '../widgests/app_bar.dart';
+import '../widgests/my_drawer.dart';
+import 'package:flutter/material.dart';
+
+class Criterias extends StatefulWidget {
+  CriteriaState createState() => new CriteriaState();
+}
+double discretevalue = 2.0;
+double hospitaldiscretevalue = 25.0;
+
+class CriteriaState extends State<Criterias> {
+
+
+    List<MyCart> listOfTiles = <MyCart>[];
+
+  void addQuant(int _qutity) {
+    setState(() {
+      _qutity++;
+    });
+  }
+  void minusQuant(int _qutity) {
+    setState(() {
+      if (_qutity != 0)
+        _qutity--;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    addItemToList('room',0);
+  }
+
+   void addItemToList(String title ,int eleId){
+            items.add(
+              ItemOrderHeader(
+                eleId,
+                false,
+                title,
+                ),
+              );
+
+        }
+
+  List<ItemOrderHeader> items = <ItemOrderHeader>[];
+
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Consumer<Cart>(
+        builder: (context , cart , child){
+         return Scaffold(
+            appBar: myAppBar(Translations.of(context).item_title),
+            drawer: CustomDrawer(),
+            body: ListView(
+              children: [
+                new Padding(
+                  padding: new EdgeInsets.all(10.0),
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: ExpansionPanelList(
+                      expansionCallback: (int index, bool isExpanded) {
+
+                        setState(() {
+                          items[index].isExpanded = !items[index].isExpanded;
+                        });
+                      },
+                      children: items.map((ItemOrderHeader item) {
+                        return new ExpansionPanel(
+                          headerBuilder: (BuildContext context, bool isExpanded) {
+                            return new Container(
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 20),
+                                child: Row(
+                                  children: <Widget>[
+                                    IconButton(
+                                      icon: new Icon(
+                                        Icons.delete,
+                                        color: items.length == 1 ? Colors.grey[300] : Colors.grey[600] ,
+                                      ),
+                                      onPressed: () {
+                                          if(cart.countHeader > 1){
+                                            cart.deleteHeader(item.id);
+                                          }
+                                      },
+                                    ),
+                                    IconButton(
+                                      iconSize: 30,
+                                      icon: new Icon(
+                                        Icons.add,
+                                        color: Colors.grey[600],
+                                      ),
+                                      onPressed: () {
+                                        cart.addHeaderToList(item.header, item.id);
+                                      },
+                                    ),
+                                    SizedBox(
+                                      width: 120,
+                                    ),
+                                    Column( // Replace with a Row for horizontal icon + text
+                                      children: <Widget>[
+                                        Text(
+                                          item.header,
+                                          style: TextStyle(
+                                              fontSize: 20
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                          isExpanded: item.isExpanded,
+                          body: Padding(
+                            padding: EdgeInsets.only(right: 1,left: 1,bottom: 1),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey[400],
+                                    offset: Offset(0.0, 0.0),
+                                  ),
+                                  BoxShadow(
+                                    color: Colors.grey[200],
+                                    offset: Offset(0.0, 0.0),
+                                    spreadRadius: -2, //extend the shadow
+                                    blurRadius: 5,
+                                  ),
+                                ],
+                              ),
+                              padding: EdgeInsets.all(10),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  SizedBox(
+                                    height: 500,
+                                    child: ListView.builder(
+                                      itemCount: cart.itemCart.length,
+                                      itemBuilder: (context, pos) {
+                                        return Padding(
+                                          padding: EdgeInsets.only(bottom: 2),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5),
+                                            child:  Column(
+                                              children : <Widget>[
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: <Widget>[
+                                                    Text(cart.itemCart[pos].title,
+                                                      style: TextStyle(
+                                                        color: Colors.grey[600],
+                                                        fontSize: 18.0,
+                                                        height: 1.6,
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Container(
+                                                      child: new Center(
+                                                        child: new Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                          children: <Widget>[
+                                                            /* addButton((){
+                                                              add(notes[pos].quantity);
+                                                            })*/
+                                                            MaterialButton(
+                                                              color: Colors.grey[50],
+                                                              onPressed: () {
+                                                                cart.addButt(pos);
+                                                              },
+                                                              child: Padding(
+                                                                padding: EdgeInsets.only(bottom: 0),
+                                                                child: Icon(
+                                                                  Icons.add,
+                                                                  color: Colors.grey,
+                                                                  size: 15,
+                                                                ),
+                                                              ),
+                                                              shape: new CircleBorder(),
+                                                              padding: const EdgeInsets.all(5),
+                                                            ),
+                                                            Text(
+                                                              cart.itemCart[pos].quantity.toString(),
+                                                              style: TextStyle(
+                                                                  fontSize: 20,
+                                                                  color: Colors.grey[600]
+                                                              ),
+                                                            ),
+                                                            MaterialButton(
+                                                              color: Colors.grey[50],
+                                                              onPressed: () {
+                                                                cart.minusButt(pos);
+                                                              },
+                                                              child: Padding(
+                                                                padding: EdgeInsets.only(bottom: 9),
+                                                                child: Icon(
+                                                                  Icons.minimize,
+                                                                  color: Colors.grey,
+                                                                  size: 15,
+                                                                ),
+                                                              ),
+                                                              shape: new CircleBorder(),
+                                                              padding: const EdgeInsets.all(5),
+                                                            )
+                                                            /*minusButton((){
+                                                              minus(notes[pos].quantity);
+                                                            })*/,
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Divider(
+                                                  color: Colors.grey[350],
+                                                ),
+                                              ],
+                                            ),
+
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
+        },
+      )
+    );
+  }
+
+
+    Widget addButton(VoidCallback voidCallback){
+      return MaterialButton(
+        color: Colors.grey[50],
+        onPressed: () {},
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 9),
+          child: Icon(
+            Icons.minimize,
+            color: Colors.grey,
+            size: 15,
+          ),
+        ),
+        shape: new CircleBorder(),
+        padding: const EdgeInsets.all(5),
+      );
+    }
+
+    Widget minusButton(VoidCallback voidCallback){
+      return MaterialButton(
+        color: Colors.grey[50],
+        onPressed: () {
+
+        },
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 9),
+          child: Icon(
+            Icons.add,
+            color: Colors.grey,
+            size: 15,
+          ),
+        ),
+        shape: new CircleBorder(),
+        padding: const EdgeInsets.all(5),
+      );
+    }
+
+}

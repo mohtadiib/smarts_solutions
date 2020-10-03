@@ -1,0 +1,8 @@
+
+
+class ConfigApp{
+
+  void getCanteryKey(){
+
+  }
+}
