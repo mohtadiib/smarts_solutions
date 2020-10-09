@@ -1,4 +1,4 @@
-# best_flutter_ui_templates
+# smart
 
 A new Flutter project.
 
